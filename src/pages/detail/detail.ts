@@ -80,10 +80,20 @@ presentLoading() {
     });
     loader.present();
   }
-  USD_CUR:any;
-  POD_CUR:any;
+  public USD_CUR:USDCurrency;
+  public POD_CUR:PODCurrency;
+  public Total_Import_USD:number;
 
-  display()
+
+  public CalculateTotal()
+  {
+    console.log(this.USD_CUR.e_af);
+    this.Total_Import_USD = this.USD_CUR['e_af'] + this.USD_CUR['e_arc']  + this.USD_CUR['e_depc'] + this.USD_CUR['e_doc'] + this.USD_CUR['e_docf'] + this.USD_CUR['e_edi'] + this.USD_CUR['e_isps'] + this.USD_CUR['e_thc'] + this.USD_CUR['e_wc'];
+    console.log(this.Total_Import_USD);
+  }
+
+
+  public display()
   {
 
     this.net.getUSD().subscribe((data) =>
@@ -94,7 +104,9 @@ presentLoading() {
         {
             if(data[i].pol === this.pol && data[i].pod === this.pod)
             {
-              console.log(data[i]);
+               this.USD_CUR = data[i];
+               console.log(this.USD_CUR['e.e_cur']);
+              
             }
         }
 
@@ -105,14 +117,16 @@ presentLoading() {
           this.POD_CUR = data;
           for(var i = 0; data.length > i ;i++)
         {
-            if(data[i].pol === this.pol && data[i].pod === this.pod)
+            if(data[i].pod === this.pod && data[i].pod === this.pod)
             {
-              console.log(data[i]);
+              this.POD_CUR = data[i];
+              console.log(this.POD_CUR['e_af']);
             }
         }
           
         }
       );
+    setTimeout(()=>this.CalculateTotal(),3000) ;
   
   //this.net.getPromise();
   }
@@ -131,5 +145,59 @@ interface Detail
   mobile_num: string,
   email: string
 
+}
+
+interface USDCurrency
+{
+  e_af:number,
+  e_arc:any,
+  e_cur:any,
+  e_depc:any,
+  e_doc:any,
+  e_docf:any,
+  e_edi:any,
+  e_ef:any,
+  e_isps:any,
+  e_thc:any,
+  e_wc:any,
+  frirght:any,
+  i_blc:any,
+  i_ctoc:any,
+  i_currency:any,
+  i_muc:any,
+  i_sc:any,
+  i_surc:any,
+  i_tc:any,
+  i_thc:any,
+  i_wc:any,
+  pod:any,
+  pol:any
+}
+
+interface PODCurrency
+{
+  e_af:number,
+  e_arc:number,
+  e_cur:number,
+  e_depc:number,
+  e_doc:number,
+  e_docf:number,
+  e_edi:number,
+  e_ef:number,
+  e_isps:number,
+  e_thc:number,
+  e_wc:number,
+  frirght:number,
+  i_blc:number,
+  i_ctoc:number,
+  i_currency:string,
+  i_muc:number,
+  i_sc:number,
+  i_surc:number,
+  i_tc:number,
+  i_thc:number,
+  i_wc:number,
+  pod:string,
+  pol:string
 }
 
