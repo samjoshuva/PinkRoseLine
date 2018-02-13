@@ -32,52 +32,52 @@
         </ion-row>
         <ion-row>
           <ion-col col-5>terminal handling Charges</ion-col>
-          <ion-col col-4> 5,200 </ion-col>
-          <ion-col col-3> {{USD_CUR?.e_af }}</ion-col>
+          <ion-col col-4> {{ POD_CUR?.e_thc }} </ion-col>
+          <ion-col col-3> {{ USD_CUR?.e_thc }}</ion-col>
         </ion-row>
         <ion-row>
           <ion-col col-5>Seal Charges</ion-col>
   
-          <ion-col col-4> 350 </ion-col>
-          <ion-col col-3> {{USD_CUR?.e_arc }} </ion-col>
+          <ion-col col-4> {{ POD_CUR?.e_sc }} </ion-col>
+          <ion-col col-3> {{ USD_CUR?.e_sc }} </ion-col>
   
         </ion-row>
         <ion-row>
           <ion-col col-5>BL Charges</ion-col>
   
-          <ion-col col-4> 2,500 </ion-col>
-          <ion-col col-3> {{USD_CUR?.e_cur}} </ion-col>
+          <ion-col col-4> {{ POD_CUR?.e_blc }} </ion-col>
+          <ion-col col-3> {{ USD_CUR?.e_blc }} </ion-col>
         </ion-row>
         <ion-row>
           <ion-col col-5>Surrender Charges</ion-col>
-          <ion-col col-4> 1,500 </ion-col>
-          <ion-col col-3> {{USD_CUR?.e_depc}} </ion-col>
+          <ion-col col-4> {{ POD_CUR?.e_surc }} </ion-col>
+          <ion-col col-3> {{ USD_CUR?.e_surc }} </ion-col>
         </ion-row>
         <ion-row>
           <ion-col col-5>Weightment Charges</ion-col>
-          <ion-col col-4> 110 </ion-col>
-          <ion-col col-3> {{USD_CUR?.e_doc}} </ion-col>
+          <ion-col col-4> {{ POD_CUR?.e_wc }} </ion-col>
+          <ion-col col-3> {{ USD_CUR?.e_wc}} </ion-col>
         </ion-row>
         <ion-row>
           <ion-col col-5>CTO Charges</ion-col>
-          <ion-col col-4> 400 </ion-col>
-          <ion-col col-3> {{USD_CUR?.e_docf}} </ion-col>
+          <ion-col col-4> {{ POD_CUR?.e_ctoc }} </ion-col>
+          <ion-col col-3> {{ USD_CUR?.e_ctoc }} </ion-col>
         </ion-row>
         <ion-row>
           <ion-col col-5>Toll Charges</ion-col>
-          <ion-col col-4> 0 </ion-col>
-          <ion-col col-3> {{USD_CUR?.e_edi}} </ion-col>
+          <ion-col col-4> {{POD_CUR?.e_tc }} </ion-col>
+          <ion-col col-3> {{USD_CUR?.e_tc}} </ion-col>
         </ion-row>
         <ion-row>
           <ion-col col-5>MUC</ion-col>
-          <ion-col col-4> 0 </ion-col>
-          <ion-col col-3> {{USD_CUR?.e_isps}} </ion-col>
+          <ion-col col-4> {{POD_CUR?.e_muc }} </ion-col>
+          <ion-col col-3> {{USD_CUR?.e_muc}} </ion-col>
         </ion-row>
   
         <ion-row>
           <ion-col col-5 class="danger">Total</ion-col>
-          <ion-col col-4> 10,060 </ion-col>
-          <ion-col col-3> {{Total_Import_USD}} </ion-col>
+          <ion-col col-4> {{Total_Export_USD}} </ion-col>
+          <ion-col col-3> {{Total_Export_USD}} </ion-col>
         </ion-row>
   
         <ion-row>
@@ -99,7 +99,7 @@
   
   
         <ion-row>
-          <ion-col align="center" col-12 class="danger">import Charges</ion-col>
+          <ion-col align="center" col-12 color="danger">import Charges</ion-col>
           
         </ion-row>
   
@@ -111,60 +111,62 @@
   
         <ion-row>
           <ion-col col-5>Terminal Handling Cahrges Freight</ion-col>
-          <ion-col col-4> 430 </ion-col>
-          <ion-col col-3> 103 </ion-col>
+          <ion-col col-4> {{ POD_CUR?.i_thc }} </ion-col>
+          <ion-col col-3> {{ USD_CUR?.i_thc }} </ion-col>
         </ion-row>
   
         <ion-row>
           <ion-col col-5>EDI</ion-col>
-          <ion-col col-4> 30 </ion-col>
-          <ion-col col-3> 7 </ion-col>
+          <ion-col col-4> {{ POD_CUR?.i_edi }} </ion-col>
+          <ion-col col-3> {{ USD_CUR?.i_edi }} </ion-col>
         </ion-row>
         <ion-row>
           <ion-col col-5>ARC</ion-col>
-          <ion-col col-4> 20 </ion-col>
-          <ion-col col-3> 5 </ion-col>
+          <ion-col col-4> {{ POD_CUR?.i_arc }} </ion-col>
+          <ion-col col-3> {{ USD_CUR?.i_arc }} </ion-col>
         </ion-row>
         <ion-row>
           <ion-col col-5>D.O Charges</ion-col>
-          <ion-col col-4> 190 </ion-col>
-          <ion-col col-3> 46 </ion-col>
+          <ion-col col-4> {{ POD_CUR?.i_doc }} </ion-col>
+          <ion-col col-3> {{ USD_CUR?.i_doc }} </ion-col>
         </ion-row>
         <ion-row>
           <ion-col col-5>Washing Charges</ion-col>
-          <ion-col col-4> 30 </ion-col>
-          <ion-col col-3> 7 </ion-col>
+          <ion-col col-4> {{ POD_CUR?.i_wc }} </ion-col>
+          <ion-col col-3> {{USD_CUR?.i_wc }} </ion-col>
         </ion-row>
         <ion-row>
           <ion-col col-5>Agency Fee</ion-col>
-          <ion-col col-4> 0 </ion-col>
-          <ion-col col-3> 0 </ion-col>
+          <ion-col col-4> {{ POD_CUR?.i_af }} </ion-col>
+          <ion-col col-3> {{USD_CUR?.i_af }} </ion-col>
         </ion-row>
         <ion-row>
           <ion-col col-5>Deposit</ion-col>
-          <ion-col col-4> 7,500 </ion-col>
-          <ion-col col-3> 49 </ion-col>
+          <ion-col col-4> {{ POD_CUR?.i_depc }} </ion-col>
+          <ion-col col-3> {{USD_CUR?.i_depc }} </ion-col>
         </ion-row>
         <ion-row>
           <ion-col col-5>ISPS</ion-col>
-          <ion-col col-4> 90 </ion-col>
-          <ion-col col-3> 24 </ion-col>
+          <ion-col col-4> {{ POD_CUR?.i_isps }} </ion-col>
+          <ion-col col-3> {{USD_CUR?.i_isps }} </ion-col>
         </ion-row>
         <ion-row>
           <ion-col col-5>Documentaion</ion-col>
-          <ion-col col-4> 80 </ion-col>
-          <ion-col col-3> 22 </ion-col>
+          <ion-col col-4> {{ POD_CUR?.i_docf }} </ion-col>
+          <ion-col col-3> {{USD_CUR?.i_docf }} </ion-col>
         </ion-row>
         <ion-row>
           <ion-col col-5>Equipment Fee</ion-col>
-          <ion-col col-4> 0 </ion-col>
-          <ion-col col-3> 0 </ion-col>
+          <ion-col col-4> {{ POD_CUR?.i_ef }} </ion-col>
+          <ion-col col-3> {{USD_CUR?.i_ef }} </ion-col>
         </ion-row>
+
         <ion-row>
-          <ion-col col-5>Total</ion-col>
-          <ion-col col-4> 7,910 </ion-col>
-          <ion-col col-3> 153 </ion-col>
+          <ion-col col-5 class="danger">Total</ion-col>
+          <ion-col col-4>  </ion-col>
+          <ion-col col-3> {{Total_Import_USD}} </ion-col>
         </ion-row>
+        
   
         <ion-row>
           <ion-col col-12>   </ion-col>
@@ -175,8 +177,8 @@
   
         <ion-row>
           <ion-col col-5>Total Shipping Charge</ion-col>
-          <ion-col col-4> Sum of all </ion-col>
-          <ion-col col-3> Sum of all </ion-col>
+          <ion-col col-4> </ion-col>
+          <ion-col col-3> {{Total_USD}} </ion-col>
         </ion-row>
         
   

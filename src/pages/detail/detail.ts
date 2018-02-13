@@ -82,14 +82,63 @@ presentLoading() {
   }
   public USD_CUR: USDCurrency;
   public POD_CUR: PODCurrency;
-  public Total_Import_USD: number;
+
+  public Total_Export_USD: number;
+  public Total_Import_USD:number;
+  public Total_USD:number;
+
+  public Total_Export_POD:number;
+  public Total_Import_POD:number;
+  
 
 
   public CalculateTotal()
   {
     //console.log(this.USD_CUR.e_af);
-    this.Total_Import_USD = Number( this.USD_CUR.e_af) + Number(this.USD_CUR.e_arc  ) + Number(this.USD_CUR.e_depc)  + Number(this.USD_CUR.e_doc)  + Number(this.USD_CUR.e_docf)  + Number(this.USD_CUR.e_edi)  + Number(this.USD_CUR.e_isps)  + Number(this.USD_CUR.e_thc)  + Number(this.USD_CUR.e_wc) ;
+    this.Total_Export_USD =     Number( this.USD_CUR.e_thc) 
+                              + Number(this.USD_CUR.e_sc  ) 
+                              + Number(this.USD_CUR.e_blc)  
+                              + Number(this.USD_CUR.e_surc)  
+                              + Number(this.USD_CUR.e_wc)  
+                              + Number(this.USD_CUR.e_ctoc)  
+                              + Number(this.USD_CUR.e_tc)  
+                              + Number(this.USD_CUR.e_muc);
+
     //console.log(this.Total_Import_USD);
+    this.Total_Import_USD = 
+                                Number( this.USD_CUR.i_thc) 
+                              + Number(this.USD_CUR.i_edi  ) 
+                              + Number(this.USD_CUR.i_arc)  
+                              + Number(this.USD_CUR.i_doc)  
+                              + Number(this.USD_CUR.i_wc)  
+                              + Number(this.USD_CUR.i_af)  
+                              + Number(this.USD_CUR.i_isps)  
+                              + Number(this.USD_CUR.i_doc) 
+                              +Number(this.USD_CUR.i_ef);
+
+    this.Total_USD = this.Total_Export_USD + this.Total_Import_USD;
+
+    
+    this.Total_Export_POD =     Number( this.POD_CUR.e_thc) 
+                              + Number(this.POD_CUR.e_sc ) 
+                              + Number(this.POD_CUR.e_blc)  
+                              + Number(this.POD_CUR.e_surc)  
+                              + Number(this.POD_CUR.e_wc)  
+                              + Number(this.POD_CUR.e_ctoc)  
+                              + Number(this.POD_CUR.e_tc)  
+                              + Number(this.POD_CUR.e_muc);
+
+    //console.log(this.Total_Import_USD);
+    this.Total_Import_POD = 
+                                Number(this.POD_CUR.i_thc) 
+                              + Number(this.POD_CUR.i_edi) 
+                              + Number(this.POD_CUR.i_arc)  
+                              + Number(this.POD_CUR.i_doc)  
+                              + Number(this.POD_CUR.i_wc)  
+                              + Number(this.POD_CUR.i_af)  
+                              + Number(this.POD_CUR.i_isps)  
+                              + Number(this.POD_CUR.i_doc) 
+                              +Number(this.POD_CUR.i_ef);
   }
 
 
@@ -104,27 +153,30 @@ presentLoading() {
         {
             if(data[i].pol === this.pol && data[i].pod === this.pod)
             {
-               this.USD_CUR.e_af = data[i]['e.af'];
-               this.USD_CUR.e_arc = data[i]['e.arc'];
-               this.USD_CUR.e_cur = data[i]['e.cur'];
-               this.USD_CUR.e_depc = data[i]['e.depc'];
-               this.USD_CUR.e_doc = data[i]['e.doc'];
-               this.USD_CUR.e_docf = data[i]['e.docf'];
-               this.USD_CUR.e_edi = data[i]['e.edi'];
-               this.USD_CUR.e_ef = data[i]['e.ef'];
-               this.USD_CUR.e_isps = data[i]['e.isps'];
                this.USD_CUR.e_thc = data[i]['e.thc'];
+               this.USD_CUR.e_sc = data[i]['e.sc'];
+               this.USD_CUR.e_blc = data[i]['e.blc'];
+               this.USD_CUR.e_surc = data[i]['e.surc'];
                this.USD_CUR.e_wc = data[i]['e.wc'];
+               this.USD_CUR.e_ctoc = data[i]['e.ctoc'];
+               this.USD_CUR.e_tc = data[i]['e.tc'];
+               this.USD_CUR.e_muc = data[i]['e.muc'];
+               this.USD_CUR.e_cur = data[i]['e.cur'];
+
                this.USD_CUR.frirght = data[i]['fright'];
-               this.USD_CUR.i_blc = data[i]['i.blc'];
-               this.USD_CUR.i_ctoc = data[i]['i.ctoc'];
-               this.USD_CUR.i_currency = data[i]['i.currency'];
-               this.USD_CUR.i_muc = data[i]['i.muc'];
-               this.USD_CUR.i_sc = data[i]['i.sc'];
-               this.USD_CUR.i_surc = data[i]['i.surc'];
-               this.USD_CUR.i_tc = data[i]['i.tc'];
+
                this.USD_CUR.i_thc = data[i]['i.thc'];
+               this.USD_CUR.i_edi = data[i]['i.edi'];
+               this.USD_CUR.i_currency = data[i]['i.currency'];
+               this.USD_CUR.i_arc = data[i]['i.arc'];
+               this.USD_CUR.i_doc = data[i]['i.doc'];
                this.USD_CUR.i_wc = data[i]['i.wc'];
+               this.USD_CUR.i_af = data[i]['i.af'];
+               this.USD_CUR.i_depc = data[i]['i.depc'];
+               this.USD_CUR.i_isps = data[i]['i.isps'];
+               this.USD_CUR.i_docf = data[i]['i.docf'];
+               this.USD_CUR.i_ef = data[i]['i.ef'];
+
                
                this.USD_CUR.pod = data[i]['pod'];
                this.USD_CUR.pol = data[i]['pol'];
@@ -147,27 +199,26 @@ presentLoading() {
             {
               this.POD_CUR = data[i];
               setTimeout(() => console.log(this.POD_CUR), 3000);
-               this.POD_CUR.e_af = data[i]['e.af'];
-               this.POD_CUR.e_arc = data[i]['e.arc'];
-               this.POD_CUR.e_cur = data[i]['e.cur'];
-               this.POD_CUR.e_depc = data[i]['e.depc'];
-               this.POD_CUR.e_doc = data[i]['e.doc'];
-               this.POD_CUR.e_docf = data[i]['e.docf'];
-               this.POD_CUR.e_edi = data[i]['e.edi'];
-               this.POD_CUR.e_ef = data[i]['e.ef'];
-               this.POD_CUR.e_isps = data[i]['e.isps'];
                this.POD_CUR.e_thc = data[i]['e.thc'];
+               this.POD_CUR.e_sc = data[i]['e.sc'];
+               this.POD_CUR.e_blc = data[i]['e.blc'];
+               this.POD_CUR.e_surc = data[i]['e.surc'];
                this.POD_CUR.e_wc = data[i]['e.wc'];
+               this.POD_CUR.e_ctoc = data[i]['e.ctoc'];
+               this.POD_CUR.e_tc = data[i]['e.tc'];
+               this.POD_CUR.e_muc = data[i]['e.muc'];
+               this.POD_CUR.e_cur = data[i]['e.cur'];
                this.POD_CUR.frirght = data[i]['fright'];
-               this.POD_CUR.i_blc = data[i]['i.blc'];
-               this.POD_CUR.i_ctoc = data[i]['i.ctoc'];
-               this.POD_CUR.i_currency = data[i]['i.currency'];
-               this.POD_CUR.i_muc = data[i]['i.muc'];
-               this.POD_CUR.i_sc = data[i]['i.sc'];
-               this.POD_CUR.i_surc = data[i]['i.surc'];
-               this.POD_CUR.i_tc = data[i]['i.tc'];
                this.POD_CUR.i_thc = data[i]['i.thc'];
+               this.POD_CUR.i_edi = data[i]['i.edi'];
+               this.POD_CUR.i_currency = data[i]['i.currency'];
+               this.POD_CUR.i_arc = data[i]['i.arc'];
+               this.POD_CUR.i_doc = data[i]['i.doc'];
                this.POD_CUR.i_wc = data[i]['i.wc'];
+               this.POD_CUR.i_af = data[i]['i.af'];
+               this.POD_CUR.i_depc = data[i]['i.depc'];
+               this.POD_CUR.i_isps = data[i]['i.isps'];
+               this.POD_CUR.i_docf = data[i]['i.docf'];
                
                this.POD_CUR.pod = data[i]['pod'];
                this.POD_CUR.pol = data[i]['pol'];
@@ -201,55 +252,59 @@ interface Detail
 
 interface USDCurrency
 {
-  e_af:number,
-  e_arc:any,
-  e_cur:any,
-  e_depc:any,
-  e_doc:any,
-  e_docf:any,
-  e_edi:any,
-  e_ef:any,
-  e_isps:any,
-  e_thc:any,
+  e_thc:number,
+  e_sc:any,
+  e_blc:any,
+  e_surc:any,
   e_wc:any,
+  e_ctoc:any,
+  e_tc:any,
+  e_muc:any,
+  e_cur:any,
+  
   frirght:any,
-  i_blc:any,
-  i_ctoc:any,
-  i_currency:any,
-  i_muc:any,
-  i_sc:any,
-  i_surc:any,
-  i_tc:any,
   i_thc:any,
+  i_edi:any,
+  i_currency:any,
+  i_arc:any,
+  i_doc:any,
   i_wc:any,
+  i_af:any,
+  i_depc:any,
+  i_isps:any,
+  i_docf:any,
+  i_ef:any,
+  
   pod:any,
   pol:any
 }
 
 interface PODCurrency
 {
-  e_af:number,
-  e_arc:number,
-  e_cur:number,
-  e_depc:number,
-  e_doc:number,
-  e_docf:number,
-  e_edi:number,
-  e_ef:number,
-  e_isps:number,
   e_thc:number,
-  e_wc:number,
-  frirght:number,
-  i_blc:number,
-  i_ctoc:number,
-  i_currency:string,
-  i_muc:number,
-  i_sc:number,
-  i_surc:number,
-  i_tc:number,
-  i_thc:number,
-  i_wc:number,
-  pod:string,
-  pol:string
+  e_sc:any,
+  e_blc:any,
+  e_surc:any,
+  e_wc:any,
+  e_ctoc:any,
+  e_tc:any,
+  e_muc:any,
+  e_cur:any,
+  
+  frirght:any,
+  i_thc:any,
+  i_edi:any,
+  i_currency:any,
+  i_arc:any,
+  i_doc:any,
+  i_wc:any,
+  i_af:any,
+  i_depc:any,
+  i_isps:any,
+  i_docf:any,
+  i_ef:any,
+  
+  pod:any,
+  pol:any
 }
 
