@@ -1,4 +1,4 @@
-<!--
+ <!--
   Generated template for the DetailPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
@@ -33,13 +33,13 @@
         <ion-row>
           <ion-col col-5>terminal handling Charges</ion-col>
           <ion-col col-4> 5,200 </ion-col>
-          <ion-col col-3> {{USD_CUR.ef}} </ion-col>
+          <ion-col col-3> {{USD_CUR | async}} </ion-col>
         </ion-row>
         <ion-row>
           <ion-col col-5>Seal Charges</ion-col>
   
           <ion-col col-4> 350 </ion-col>
-          <ion-col col-3> {{USD_CUR}} </ion-col>
+          <ion-col col-3> {{USD_CUR | async}} </ion-col>
   
         </ion-row>
         <ion-row>
