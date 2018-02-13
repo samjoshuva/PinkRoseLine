@@ -92,15 +92,15 @@ export class HomePage  {
         this.commoditytype = data;
         
         
-        setTimeout(() => console.log(data), 2000);
+        console.log(data);
       });
     this.net.getPol().subscribe((data) =>
       {
         console.log("Data Loaded");
         this.from = data;
         
+        console.log(data);
         
-        setTimeout(() => console.log(data), 2000);
       });
 
     this.net.getPod().subscribe((data) =>
@@ -109,7 +109,7 @@ export class HomePage  {
         this.to = data;
 
         
-        setTimeout(() => console.log(data), 2000);
+        console.log(data[0]['location']);
       });
 
     

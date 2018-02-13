@@ -64,15 +64,15 @@ var DetailPage = (function () {
     };
     DetailPage.prototype.presentLoading = function () {
         var loader = this.loadingCtrl.create({
-            content: "Please wait...",
-            duration: 3000
+            content: "Fecthing you best Price Please wait...",
+            duration: 500
         });
         loader.present();
     };
     DetailPage.prototype.CalculateTotal = function () {
-        console.log(this.USD_CUR.e_af);
-        this.Total_Import_USD = this.USD_CUR['e_af'] + this.USD_CUR['e_arc'] + this.USD_CUR['e_depc'] + this.USD_CUR['e_doc'] + this.USD_CUR['e_docf'] + this.USD_CUR['e_edi'] + this.USD_CUR['e_isps'] + this.USD_CUR['e_thc'] + this.USD_CUR['e_wc'];
-        console.log(this.Total_Import_USD);
+        //console.log(this.USD_CUR.e_af);
+        this.Total_Import_USD = Number(this.USD_CUR.e_af) + Number(this.USD_CUR.e_arc) + Number(this.USD_CUR.e_depc) + Number(this.USD_CUR.e_doc) + Number(this.USD_CUR.e_docf) + Number(this.USD_CUR.e_edi) + Number(this.USD_CUR.e_isps) + Number(this.USD_CUR.e_thc) + Number(this.USD_CUR.e_wc);
+        //console.log(this.Total_Import_USD);
     };
     DetailPage.prototype.display = function () {
         var _this = this;
@@ -80,34 +80,78 @@ var DetailPage = (function () {
             _this.USD_CUR = data;
             for (var i = 0; data.length > i; i++) {
                 if (data[i].pol === _this.pol && data[i].pod === _this.pod) {
-                    _this.USD_CUR = data[i];
-                    console.log(_this.USD_CUR['e.e_cur']);
+                    _this.USD_CUR.e_af = data[i]['e.af'];
+                    _this.USD_CUR.e_arc = data[i]['e.arc'];
+                    _this.USD_CUR.e_cur = data[i]['e.cur'];
+                    _this.USD_CUR.e_depc = data[i]['e.depc'];
+                    _this.USD_CUR.e_doc = data[i]['e.doc'];
+                    _this.USD_CUR.e_docf = data[i]['e.docf'];
+                    _this.USD_CUR.e_edi = data[i]['e.edi'];
+                    _this.USD_CUR.e_ef = data[i]['e.ef'];
+                    _this.USD_CUR.e_isps = data[i]['e.isps'];
+                    _this.USD_CUR.e_thc = data[i]['e.thc'];
+                    _this.USD_CUR.e_wc = data[i]['e.wc'];
+                    _this.USD_CUR.frirght = data[i]['fright'];
+                    _this.USD_CUR.i_blc = data[i]['i.blc'];
+                    _this.USD_CUR.i_ctoc = data[i]['i.ctoc'];
+                    _this.USD_CUR.i_currency = data[i]['i.currency'];
+                    _this.USD_CUR.i_muc = data[i]['i.muc'];
+                    _this.USD_CUR.i_sc = data[i]['i.sc'];
+                    _this.USD_CUR.i_surc = data[i]['i.surc'];
+                    _this.USD_CUR.i_tc = data[i]['i.tc'];
+                    _this.USD_CUR.i_thc = data[i]['i.thc'];
+                    _this.USD_CUR.i_wc = data[i]['i.wc'];
+                    _this.USD_CUR.pod = data[i]['pod'];
+                    _this.USD_CUR.pol = data[i]['pol'];
+                    setTimeout(function () { return console.log(_this.USD_CUR); }, 3000);
                 }
             }
+            console.log(_this.USD_CUR.pod);
         });
         this.net.getPODCur().subscribe(function (data) {
             _this.POD_CUR = data;
             for (var i = 0; data.length > i; i++) {
-                if (data[i].pod === _this.pod && data[i].pod === _this.pod) {
+                if (data[i].pol === _this.pol && data[i].pod === _this.pod) {
                     _this.POD_CUR = data[i];
-                    console.log(_this.POD_CUR['e_af']);
+                    setTimeout(function () { return console.log(_this.POD_CUR); }, 3000);
+                    _this.POD_CUR.e_af = data[i]['e.af'];
+                    _this.POD_CUR.e_arc = data[i]['e.arc'];
+                    _this.POD_CUR.e_cur = data[i]['e.cur'];
+                    _this.POD_CUR.e_depc = data[i]['e.depc'];
+                    _this.POD_CUR.e_doc = data[i]['e.doc'];
+                    _this.POD_CUR.e_docf = data[i]['e.docf'];
+                    _this.POD_CUR.e_edi = data[i]['e.edi'];
+                    _this.POD_CUR.e_ef = data[i]['e.ef'];
+                    _this.POD_CUR.e_isps = data[i]['e.isps'];
+                    _this.POD_CUR.e_thc = data[i]['e.thc'];
+                    _this.POD_CUR.e_wc = data[i]['e.wc'];
+                    _this.POD_CUR.frirght = data[i]['fright'];
+                    _this.POD_CUR.i_blc = data[i]['i.blc'];
+                    _this.POD_CUR.i_ctoc = data[i]['i.ctoc'];
+                    _this.POD_CUR.i_currency = data[i]['i.currency'];
+                    _this.POD_CUR.i_muc = data[i]['i.muc'];
+                    _this.POD_CUR.i_sc = data[i]['i.sc'];
+                    _this.POD_CUR.i_surc = data[i]['i.surc'];
+                    _this.POD_CUR.i_tc = data[i]['i.tc'];
+                    _this.POD_CUR.i_thc = data[i]['i.thc'];
+                    _this.POD_CUR.i_wc = data[i]['i.wc'];
+                    _this.POD_CUR.pod = data[i]['pod'];
+                    _this.POD_CUR.pol = data[i]['pol'];
                 }
             }
         });
+        //this.CalculateTotal();
         setTimeout(function () { return _this.CalculateTotal(); }, 3000);
         //this.net.getPromise();
     };
     DetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-detail',template:/*ion-inline-start:"C:\Users\Sam Joshuva\Documents\GitHub\PinkRoseLine\src\pages\detail\detail.html"*/' <!--\n\n  Generated template for the DetailPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  \n\n    <ion-navbar>\n\n      <ion-title>detail</ion-title>\n\n    </ion-navbar>\n\n  \n\n  </ion-header>\n\n  \n\n  \n\n  <ion-content  >\n\n\n\n   \n\n  \n\n    \n\n        <ion-grid>\n\n\n\n           <ion-row color="sucess">\n\n          <ion-col align="center" col-12 >Export Charges</ion-col>\n\n          \n\n        </ion-row>\n\n  \n\n          <ion-row>\n\n          <ion-col col-5>  </ion-col>\n\n          <ion-col col-4> INR </ion-col>\n\n          <ion-col col-3> USD </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>terminal handling Charges</ion-col>\n\n          <ion-col col-4> 5,200 </ion-col>\n\n          <ion-col col-3> {{USD_CUR | async}} </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>Seal Charges</ion-col>\n\n  \n\n          <ion-col col-4> 350 </ion-col>\n\n          <ion-col col-3> {{USD_CUR | async}} </ion-col>\n\n  \n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>BL Charges</ion-col>\n\n  \n\n          <ion-col col-4> 2,500 </ion-col>\n\n          <ion-col col-3> {{USD_CUR}} </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>Surrender Charges</ion-col>\n\n          <ion-col col-4> 1,500 </ion-col>\n\n          <ion-col col-3> {{USD_CUR}} </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>Weightment Charges</ion-col>\n\n          <ion-col col-4> 110 </ion-col>\n\n          <ion-col col-3> {{USD_CUR}} </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>CTO Charges</ion-col>\n\n          <ion-col col-4> 400 </ion-col>\n\n          <ion-col col-3> {{USD_CUR}} </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>Toll Charges</ion-col>\n\n          <ion-col col-4> 0 </ion-col>\n\n          <ion-col col-3> {{USD_CUR}} </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>MUC</ion-col>\n\n          <ion-col col-4> 0 </ion-col>\n\n          <ion-col col-3> {{USD_CUR}} </ion-col>\n\n        </ion-row>\n\n  \n\n        <ion-row>\n\n          <ion-col col-5 class="danger">Total</ion-col>\n\n          <ion-col col-4> 10,060 </ion-col>\n\n          <ion-col col-3> {{Total_Import_USD}} </ion-col>\n\n        </ion-row>\n\n  \n\n        <ion-row>\n\n          <ion-col align="center" col-12 class="danger">Freight Charges</ion-col>\n\n          \n\n        </ion-row>\n\n  \n\n        <ion-row>\n\n          <ion-col col-5>  </ion-col>\n\n          <ion-col col-4> INR </ion-col>\n\n          <ion-col col-3> USD </ion-col>\n\n        </ion-row>\n\n  \n\n        <ion-row>\n\n          <ion-col col-5>Ocean Freight</ion-col>\n\n          <ion-col col-4>  </ion-col>\n\n          <ion-col col-3> 250 </ion-col>\n\n        </ion-row>\n\n  \n\n  \n\n        <ion-row>\n\n          <ion-col align="center" col-12 class="danger">import Charges</ion-col>\n\n          \n\n        </ion-row>\n\n  \n\n        <ion-row>\n\n          <ion-col col-5>  </ion-col>\n\n          <ion-col col-4> INR </ion-col>\n\n          <ion-col col-3> USD </ion-col>\n\n        </ion-row>\n\n  \n\n        <ion-row>\n\n          <ion-col col-5>Terminal Handling Cahrges Freight</ion-col>\n\n          <ion-col col-4> 430 </ion-col>\n\n          <ion-col col-3> 103 </ion-col>\n\n        </ion-row>\n\n  \n\n        <ion-row>\n\n          <ion-col col-5>EDI</ion-col>\n\n          <ion-col col-4> 30 </ion-col>\n\n          <ion-col col-3> 7 </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>ARC</ion-col>\n\n          <ion-col col-4> 20 </ion-col>\n\n          <ion-col col-3> 5 </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>D.O Charges</ion-col>\n\n          <ion-col col-4> 190 </ion-col>\n\n          <ion-col col-3> 46 </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>Washing Charges</ion-col>\n\n          <ion-col col-4> 30 </ion-col>\n\n          <ion-col col-3> 7 </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>Agency Fee</ion-col>\n\n          <ion-col col-4> 0 </ion-col>\n\n          <ion-col col-3> 0 </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>Deposit</ion-col>\n\n          <ion-col col-4> 7,500 </ion-col>\n\n          <ion-col col-3> 49 </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>ISPS</ion-col>\n\n          <ion-col col-4> 90 </ion-col>\n\n          <ion-col col-3> 24 </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>Documentaion</ion-col>\n\n          <ion-col col-4> 80 </ion-col>\n\n          <ion-col col-3> 22 </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>Equipment Fee</ion-col>\n\n          <ion-col col-4> 0 </ion-col>\n\n          <ion-col col-3> 0 </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>Total</ion-col>\n\n          <ion-col col-4> 7,910 </ion-col>\n\n          <ion-col col-3> 153 </ion-col>\n\n        </ion-row>\n\n  \n\n        <ion-row>\n\n          <ion-col col-12>   </ion-col>\n\n          \n\n        </ion-row>\n\n  \n\n  \n\n  \n\n        <ion-row>\n\n          <ion-col col-5>Total Shipping Charge</ion-col>\n\n          <ion-col col-4> Sum of all </ion-col>\n\n          <ion-col col-3> Sum of all </ion-col>\n\n        </ion-row>\n\n        \n\n  \n\n  \n\n  \n\n  \n\n        \n\n  \n\n  \n\n  \n\n  \n\n  \n\n  \n\n      </ion-grid>\n\n  \n\n      \n\n  \n\n  \n\n  \n\n    \n\n  \n\n  </ion-content>\n\n  \n\n  \n\n  \n\n    <ion-footer>\n\n        <Button ion-button danger block color="danger" (click)="share()"  >Share</Button>\n\n      </ion-footer>\n\n  \n\n  \n\n  \n\n    '/*ion-inline-end:"C:\Users\Sam Joshuva\Documents\GitHub\PinkRoseLine\src\pages\detail\detail.html"*/,
+            selector: 'page-detail',template:/*ion-inline-start:"C:\Users\Sam Joshuva\Documents\GitHub\PinkRoseLine\src\pages\detail\detail.html"*/' <!--\n\n  Generated template for the DetailPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  \n\n    <ion-navbar>\n\n      <ion-title>detail</ion-title>\n\n    </ion-navbar>\n\n  \n\n  </ion-header>\n\n  \n\n  \n\n  <ion-content  >\n\n\n\n   \n\n  \n\n    \n\n        <ion-grid>\n\n\n\n           <ion-row color="sucess">\n\n          <ion-col align="center" col-12 >Export Charges</ion-col>\n\n          \n\n        </ion-row>\n\n  \n\n          <ion-row>\n\n          <ion-col col-5>  </ion-col>\n\n          <ion-col col-4> INR </ion-col>\n\n          <ion-col col-3> USD </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>terminal handling Charges</ion-col>\n\n          <ion-col col-4> 5,200 </ion-col>\n\n          <ion-col col-3> {{USD_CUR?.e_af }}</ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>Seal Charges</ion-col>\n\n  \n\n          <ion-col col-4> 350 </ion-col>\n\n          <ion-col col-3> {{USD_CUR?.e_arc }} </ion-col>\n\n  \n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>BL Charges</ion-col>\n\n  \n\n          <ion-col col-4> 2,500 </ion-col>\n\n          <ion-col col-3> {{USD_CUR?.e_cur}} </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>Surrender Charges</ion-col>\n\n          <ion-col col-4> 1,500 </ion-col>\n\n          <ion-col col-3> {{USD_CUR?.e_depc}} </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>Weightment Charges</ion-col>\n\n          <ion-col col-4> 110 </ion-col>\n\n          <ion-col col-3> {{USD_CUR?.e_doc}} </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>CTO Charges</ion-col>\n\n          <ion-col col-4> 400 </ion-col>\n\n          <ion-col col-3> {{USD_CUR?.e_docf}} </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>Toll Charges</ion-col>\n\n          <ion-col col-4> 0 </ion-col>\n\n          <ion-col col-3> {{USD_CUR?.e_edi}} </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>MUC</ion-col>\n\n          <ion-col col-4> 0 </ion-col>\n\n          <ion-col col-3> {{USD_CUR?.e_isps}} </ion-col>\n\n        </ion-row>\n\n  \n\n        <ion-row>\n\n          <ion-col col-5 class="danger">Total</ion-col>\n\n          <ion-col col-4> 10,060 </ion-col>\n\n          <ion-col col-3> {{Total_Import_USD}} </ion-col>\n\n        </ion-row>\n\n  \n\n        <ion-row>\n\n          <ion-col align="center" col-12 class="danger">Freight Charges</ion-col>\n\n          \n\n        </ion-row>\n\n  \n\n        <ion-row>\n\n          <ion-col col-5>  </ion-col>\n\n          <ion-col col-4> INR </ion-col>\n\n          <ion-col col-3> USD </ion-col>\n\n        </ion-row>\n\n  \n\n        <ion-row>\n\n          <ion-col col-5>Ocean Freight</ion-col>\n\n          <ion-col col-4>  </ion-col>\n\n          <ion-col col-3> 250 </ion-col>\n\n        </ion-row>\n\n  \n\n  \n\n        <ion-row>\n\n          <ion-col align="center" col-12 class="danger">import Charges</ion-col>\n\n          \n\n        </ion-row>\n\n  \n\n        <ion-row>\n\n          <ion-col col-5>  </ion-col>\n\n          <ion-col col-4> INR </ion-col>\n\n          <ion-col col-3> USD </ion-col>\n\n        </ion-row>\n\n  \n\n        <ion-row>\n\n          <ion-col col-5>Terminal Handling Cahrges Freight</ion-col>\n\n          <ion-col col-4> 430 </ion-col>\n\n          <ion-col col-3> 103 </ion-col>\n\n        </ion-row>\n\n  \n\n        <ion-row>\n\n          <ion-col col-5>EDI</ion-col>\n\n          <ion-col col-4> 30 </ion-col>\n\n          <ion-col col-3> 7 </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>ARC</ion-col>\n\n          <ion-col col-4> 20 </ion-col>\n\n          <ion-col col-3> 5 </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>D.O Charges</ion-col>\n\n          <ion-col col-4> 190 </ion-col>\n\n          <ion-col col-3> 46 </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>Washing Charges</ion-col>\n\n          <ion-col col-4> 30 </ion-col>\n\n          <ion-col col-3> 7 </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>Agency Fee</ion-col>\n\n          <ion-col col-4> 0 </ion-col>\n\n          <ion-col col-3> 0 </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>Deposit</ion-col>\n\n          <ion-col col-4> 7,500 </ion-col>\n\n          <ion-col col-3> 49 </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>ISPS</ion-col>\n\n          <ion-col col-4> 90 </ion-col>\n\n          <ion-col col-3> 24 </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>Documentaion</ion-col>\n\n          <ion-col col-4> 80 </ion-col>\n\n          <ion-col col-3> 22 </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>Equipment Fee</ion-col>\n\n          <ion-col col-4> 0 </ion-col>\n\n          <ion-col col-3> 0 </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-5>Total</ion-col>\n\n          <ion-col col-4> 7,910 </ion-col>\n\n          <ion-col col-3> 153 </ion-col>\n\n        </ion-row>\n\n  \n\n        <ion-row>\n\n          <ion-col col-12>   </ion-col>\n\n          \n\n        </ion-row>\n\n  \n\n  \n\n  \n\n        <ion-row>\n\n          <ion-col col-5>Total Shipping Charge</ion-col>\n\n          <ion-col col-4> Sum of all </ion-col>\n\n          <ion-col col-3> Sum of all </ion-col>\n\n        </ion-row>\n\n        \n\n  \n\n  \n\n  \n\n  \n\n        \n\n  \n\n  \n\n  \n\n  \n\n  \n\n  \n\n      </ion-grid>\n\n  \n\n      \n\n  \n\n  \n\n  \n\n    \n\n  \n\n  </ion-content>\n\n  \n\n  \n\n  \n\n    <ion-footer>\n\n        <Button ion-button danger block color="danger" (click)="share()"  >Share</Button>\n\n      </ion-footer>\n\n  \n\n  \n\n  \n\n    '/*ion-inline-end:"C:\Users\Sam Joshuva\Documents\GitHub\PinkRoseLine\src\pages\detail\detail.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_network_network__["a" /* NetworkProvider */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_native_social_sharing__["a" /* SocialSharing */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_network_network__["a" /* NetworkProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_network_network__["a" /* NetworkProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_social_sharing__["a" /* SocialSharing */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_social_sharing__["a" /* SocialSharing */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]) === "function" && _e || Object])
     ], DetailPage);
     return DetailPage;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=detail.js.map
@@ -228,17 +272,17 @@ var HomePage = (function () {
         this.net.getCommodity().subscribe(function (data) {
             console.log("Data Loaded");
             _this.commoditytype = data;
-            setTimeout(function () { return console.log(data); }, 2000);
+            console.log(data);
         });
         this.net.getPol().subscribe(function (data) {
             console.log("Data Loaded");
             _this.from = data;
-            setTimeout(function () { return console.log(data); }, 2000);
+            console.log(data);
         });
         this.net.getPod().subscribe(function (data) {
             console.log("Data Loaded");
             _this.to = data;
-            setTimeout(function () { return console.log(data); }, 2000);
+            console.log(data[0]['location']);
         });
     };
     HomePage.prototype.senddetail = function () {
