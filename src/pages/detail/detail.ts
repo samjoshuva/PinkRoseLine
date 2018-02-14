@@ -76,7 +76,7 @@ export class DetailPage {
 presentLoading() {
     let loader = this.loadingCtrl.create({
       content: "Fecthing you best Price Please wait...",
-      duration: 500
+      duration: 5000
     });
     loader.present();
   }
@@ -219,6 +219,7 @@ presentLoading() {
                this.POD_CUR.i_depc = data[i]['i.depc'];
                this.POD_CUR.i_isps = data[i]['i.isps'];
                this.POD_CUR.i_docf = data[i]['i.docf'];
+               this.POD_CUR.i_ef = data[i]['i.ef'];
                
                this.POD_CUR.pod = data[i]['pod'];
                this.POD_CUR.pol = data[i]['pol'];

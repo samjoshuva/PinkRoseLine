@@ -41,7 +41,7 @@ export class HomePage  {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SplashPage');
-    setTimeout(() => this.splash = false, 1000);    
+    setTimeout(() => this.splash = false, 5000);    
   }
   
 
@@ -66,7 +66,6 @@ export class HomePage  {
          "number": ["", Validators.required],
          "email": ["", Validators.required]
       });
-     this.presentLoading();
      this.displayPolPod();
     
   }
